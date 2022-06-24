@@ -1,1 +1,1 @@
-# Atomic-Red-Team-Sentinel-Workbook
+# Atomic Red Team Sentinel Workbook
