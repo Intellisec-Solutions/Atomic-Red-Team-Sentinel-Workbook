@@ -13,14 +13,18 @@ This workbook helps you assess your Microsoft Sentinel Analytics Detection cover
 
 ## Threat Profiling
 
-The first step is to provide the tool with a threat profile. The threat profile is represented as MITRE ATT&CK navigation layer. The infosec community already shares many navigation layers of threat profiles and mapped threat intelligence reports. One of them is the following:
-
-DeTTECT Threat Actors Navigation Layers
+The first step is to provide the tool with a threat profile. The threat profile is represented as MITRE ATT&CK navigation layer. The infosec community already shares many navigation layers of threat profiles and mapped threat intelligence reports. If you have a Threat Heat map as a MITRE ATT&CK navigation layer you can use the <strong>MITRE2CSV.py</strong> script to convert it to a CSV file. Create a Watchlist using that csv file. The name of the watchlist should follow this format: Threat_Profile_<TITLE>. For example, Threat_Profile_APT28
 
 ## Generate Microsoft Sentinel Analytics Watchlist
 
+Once you create threat profile watchlists, you need to create a watchlist containing your Microsoft Sentinel Analytics Coverage. In order to do that, export the Analytics table from the deployed workbook and use the script <strong>Coverage2CSV.py</strong> to create a CSV file containing the techniques coveraged by your sentinel analytics rules. Use that csv file to create a watchlist. 
+
 
 ## Generate Atomic Tests Watchlist
+
+At this phase, you already created threat profiles and coverage watchlists. Then, create a watchlist that contains all Atomic Red Team tests. To geberate the csv needed to create the watchlist use the script <strong>MITRE2csv.py </strong>
+
+Now you have everything to use the workbook. To identify the Atomic tests that you can use to perform threat emulation and enhance your detection capabilities by writing new rules for them. 
 
 
 
