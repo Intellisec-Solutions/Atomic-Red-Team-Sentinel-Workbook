@@ -22,7 +22,7 @@ Once you create threat profile watchlists, you need to create a watchlist contai
 
 ## Generate Atomic Tests Watchlist
 
-At this phase, you already created threat profiles and coverage watchlists. Then, create a watchlist that contains all Atomic Red Team tests. To geberate the csv needed to create the watchlist use the script <strong>MITRE2csv.py </strong>
+At this phase, you already created threat profiles and coverage watchlists. Then, create a watchlist that contains all Atomic Red Team tests. To generate the needed csv when creating the watchlist use the script <strong>MITRE2csv.py </strong>
 
 Now you have everything to use the workbook. To identify the Atomic tests that you can use to perform threat emulation and enhance your detection capabilities by writing new rules for them. 
 
