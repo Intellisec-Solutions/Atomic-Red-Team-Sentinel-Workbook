@@ -26,6 +26,10 @@ At this phase, you already created threat profiles and coverage watchlists. Then
 
 Now you have everything to use the workbook. To identify the Atomic tests that you can use to perform threat emulation and enhance your detection capabilities by writing new rules for them. 
 
+<p align="center">
+<img src="https://github.com/Intellisec-Solutions/Atomic-Red-Team-Sentinel-Workbook/blob/main/Images/screenshot.png?raw=true" alt="logo" style="width:1400px"></a>
+</p>
+
 
 
 
