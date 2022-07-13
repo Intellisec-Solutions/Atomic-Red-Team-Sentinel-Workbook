@@ -5,6 +5,7 @@ from pandas import read_excel
 import sys
 
 print(termcolor.colored("[+] MITRE NAVIGATION LAYER 2 CSV CONVERTER","cyan"))
+print("Usage: python3 MITRE2CSV.py <Navigation_Layer Path (.json)> <Output_CSV_File Path (.csv)> ")
 
 Profile_PATH = sys.argv[1]
 with open(Profile_PATH,"r") as r:
