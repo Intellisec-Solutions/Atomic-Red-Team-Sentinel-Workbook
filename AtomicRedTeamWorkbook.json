@@ -1,0 +1,360 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 1,
+      "content": {
+        "json": "## ATOMIC RED TEAM WORKBOOK\n<p align=\"center\">\n<img src=\"https://github.com/Intellisec-Solutions/Atomic-Red-Team-Sentinel-Workbook/blob/main/Images/art.png?raw=true\" alt=\"logo\" style=\"width:1400px\"></a>\n</p>\n---\nAtomic Red Team™ is library of tests mapped to the MITRE ATT&CK® framework. Security teams can use Atomic Red Team to quickly, portably, and reproducibly test their environments.\n\n"
+      },
+      "name": "text - 2"
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "parameters": [
+          {
+            "id": "d42fb1e4-4783-44b8-877d-8b973a1a5e22",
+            "version": "KqlParameterItem/1.0",
+            "name": "TimeRange",
+            "label": "Time Range",
+            "type": 4,
+            "isRequired": true,
+            "value": {
+              "durationMs": 172800000
+            },
+            "typeSettings": {
+              "selectableValues": [
+                {
+                  "durationMs": 300000
+                },
+                {
+                  "durationMs": 900000
+                },
+                {
+                  "durationMs": 1800000
+                },
+                {
+                  "durationMs": 3600000
+                },
+                {
+                  "durationMs": 14400000
+                },
+                {
+                  "durationMs": 43200000
+                },
+                {
+                  "durationMs": 86400000
+                },
+                {
+                  "durationMs": 172800000
+                },
+                {
+                  "durationMs": 259200000
+                },
+                {
+                  "durationMs": 604800000
+                },
+                {
+                  "durationMs": 1209600000
+                },
+                {
+                  "durationMs": 2419200000
+                },
+                {
+                  "durationMs": 2592000000
+                },
+                {
+                  "durationMs": 5184000000
+                },
+                {
+                  "durationMs": 7776000000
+                }
+              ]
+            },
+            "timeContext": {
+              "durationMs": 86400000
+            }
+          }
+        ],
+        "style": "pills",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "parameters - 12"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## THREAT PROFILE\nSelect a Threat Profile"
+      },
+      "name": "text - 2"
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "parameters": [
+          {
+            "id": "08669159-f20c-4f67-9d69-e0cb91038212",
+            "version": "KqlParameterItem/1.0",
+            "name": "ThreatProfile",
+            "label": "Threat Profile",
+            "type": 2,
+            "isRequired": true,
+            "query": "_GetWatchlistAlias\n| where WatchlistAlias has \"Threat_Profile\"",
+            "value": "Threat_Profile_APT28",
+            "typeSettings": {
+              "additionalResourceOptions": [],
+              "showDefault": false
+            },
+            "timeContext": {
+              "durationMs": 0
+            },
+            "timeContextFromParameter": "TimeRange",
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces"
+          }
+        ],
+        "style": "formVertical",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "customWidth": "50",
+      "name": "parameters - 3"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "These are the Tactics and Techniques performed by the related Threat Groups"
+      },
+      "name": "text - 11"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "_GetWatchlist(\"{ThreatProfile}\")\n| project ID, name,tactics,platforms,url",
+        "size": 0,
+        "title": "THREAT PROFILE TECHNIQUES",
+        "timeContextFromParameter": "TimeRange",
+        "showRefreshButton": true,
+        "showExportToExcel": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "url",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Link",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "name": "query - 4"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## MICROSOFT SENTINEL ANALYTICS\n---\nThese are analytics (Detection Rules) covered by your Microsoft Sentinel "
+      },
+      "name": "text - 5"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "{\"version\":\"ARMEndpoint/1.0\",\"data\":null,\"headers\":[],\"method\":\"GET\",\"path\":\"/subscriptions/<SUBSCRIPTION_ID_HERE>/resourceGroups/<RESOURCE_GROUP_HERE>/providers/Microsoft.OperationalInsights/workspaces/<WORKSPACE_HERE>/providers/Microsoft.SecurityInsights/alertRules\",\"urlParams\":[{\"key\":\"api-version\",\"value\":\"2021-10-01-preview\"}],\"batchDisabled\":false,\"transformers\":[{\"type\":\"jsonpath\",\"settings\":{\"tablePath\":\"$.value\",\"columns\":[{\"path\":\"$.properties.displayName\",\"columnid\":\"RuleName\"},{\"path\":\"$.properties.description\",\"columnid\":\"Description\"},{\"path\":\"$.kind\",\"columnid\":\"RuleType\"},{\"path\":\"$.properties.tactics\",\"columnid\":\"Tactics\"},{\"path\":\"$.properties.techniques[*]\",\"columnid\":\"Techniques\"},{\"path\":\"$.properties.enabled\",\"columnid\":\"Status\"}]}}]}",
+        "size": 0,
+        "title": "MICROSOFT SENTINEL ANALYTICS",
+        "showRefreshButton": true,
+        "showExportToExcel": true,
+        "queryType": 12,
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "RuleType",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Anomaly",
+                    "representation": "trendup",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Scheduled",
+                    "representation": "Alert",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "==",
+                    "thresholdValue": "NRT",
+                    "representation": "",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "==",
+                    "thresholdValue": "MicrosoftSecurityIncidentCreation",
+                    "representation": "AzurePortal",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Fusion",
+                    "representation": "PowerUp",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "success",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "Status",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "true",
+                    "representation": "success",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "==",
+                    "thresholdValue": "false",
+                    "representation": "cancelled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "success",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "name": "ANALYTICS"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## DETECTION GAPS\n---\nTo enahnce your detection capabilities, you need to develop rules to detect these TTPs"
+      },
+      "name": "text - 10"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "_GetWatchlist('{ThreatProfile}')\n| join kind=leftanti (\n_GetWatchlist('Coverage')\n) on $left.ID == $right.ATTACKTechniques\n| project ID,name,platforms\n\n",
+        "size": 1,
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "query - 1"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## ATOMIC RED TEAM TESTS \n---\nThese Atomic Red Team tests will help you emulate the previously identified TTPs"
+      },
+      "name": "text - 6"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "_GetWatchlist('{ThreatProfile}')\n| join kind=leftanti (\n_GetWatchlist('Coverage')\n) on $left.ID == $right.ATTACKTechniques\n| project ID,name,platforms\n| join kind=innerunique   (\n_GetWatchlist('AtomicTests')\n) on $left.ID == $right.ID\n| project  ID,AtomicUrl",
+        "size": 0,
+        "title": "ATOMIC TESTS URLS",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "showRefreshButton": true,
+        "showExportToExcel": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "AtomicUrl",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Link",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "customWidth": "60",
+      "name": "query - 7"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "_GetWatchlist('{ThreatProfile}')\n| join kind=leftanti (\n_GetWatchlist('Coverage')\n) on $left.ID == $right.ATTACKTechniques\n| project ID,name,platforms\n| join kind=innerunique   (\n_GetWatchlist('AtomicTests')\n) on $left.ID == $right.ID\n| project  ID,AtomicUrl\n| summarize count() by ID",
+        "size": 3,
+        "title": "ATOMIC TESTS BY TECHNIQUE",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "showRefreshButton": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "piechart",
+        "chartSettings": {
+          "seriesLabelSettings": [
+            {
+              "seriesName": "T1003",
+              "color": "redBright"
+            }
+          ]
+        }
+      },
+      "customWidth": "40",
+      "name": "query - 8"
+    }
+  ],
+  "fallbackResourceIds": [
+    ""
+  ],
+  "fromTemplateId": "sentinel-UserWorkbook",
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
